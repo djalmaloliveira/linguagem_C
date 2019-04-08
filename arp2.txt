@@ -1,0 +1,16 @@
+
+Interface: 192.168.70.53 --- 0x3
+  Endere‡o IP           Endere‡o f¡sico       Tipo
+  192.168.70.1          84-c9-b2-5b-a7-3c     dinƒmico  
+  192.168.70.2          00-0c-29-d7-0a-f1     dinƒmico  
+  192.168.70.13         b4-8b-19-70-25-d3     dinƒmico  
+  192.168.71.255        ff-ff-ff-ff-ff-ff     est tico  
+  224.0.0.2             01-00-5e-00-00-02     est tico  
+  224.0.0.22            01-00-5e-00-00-16     est tico  
+  224.0.0.251           01-00-5e-00-00-fb     est tico  
+  224.0.0.252           01-00-5e-00-00-fc     est tico  
+  224.2.2.2             01-00-5e-02-02-02     est tico  
+  230.0.0.1             01-00-5e-00-00-01     est tico  
+  239.192.152.143       01-00-5e-40-98-8f     est tico  
+  239.255.255.250       01-00-5e-7f-ff-fa     est tico  
+  255.255.255.255       ff-ff-ff-ff-ff-ff     est tico  
