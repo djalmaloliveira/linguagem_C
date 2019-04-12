@@ -20,7 +20,7 @@ main(){
 		scanf("%f",&num);
 		res = res + num;		
 	}	
-	printf("\n\nA media dos %d numero eh: %.2f",(count - 1),res/(count - 1));
+	printf("\n\nA media dos %d numeros eh: %.2f",(count - 1),res/(count - 1));
 	printf("\n\n");	
 
 	return 0;
