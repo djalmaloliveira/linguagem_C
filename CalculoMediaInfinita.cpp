@@ -1,6 +1,6 @@
 /*
-/*	Programa para calcular a media entre varios valores. O total de termos é indefinido,
-ao final será apresentado a media de todos os dados inseridos.
+/*Programa para calcular a media entre varios valores. O total de termos é indefinido,
+/*ao final será apresentado a media de todos os dados inseridos.
 */
 #include <stdio.h>
 
