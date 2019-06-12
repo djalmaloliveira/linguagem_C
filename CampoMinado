@@ -1,0 +1,254 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <time.h>
+
+#define mina '*'
+#define vazio '0'
+#define vizinho '1'
+#define oculto '-'
+#define ver '7'
+#define x 10
+#define y 10
+
+
+int  xm, ym, xe, ye, qtdmina, smina, xa, ya ,cx ,cy, contc = 0,contb = 0, contd= 0, conte= 0; 
+char minas[x][y],eminas[x][y],control[x][y];
+bool perdeu =false;
+
+void        pcima(int linha, int coluna);
+void 		pbaixo(int linha, int coluna);
+void     	pdireita(int linha, int coluna);
+void 		pesquerda(int linha, int coluna);
+
+void exibe(int linha, int coluna){	
+	
+	printf("\n Campo Minado\n\n");		
+	eminas[linha][coluna] = minas[linha][coluna];
+	
+	
+	for (xe=0; xe < x; xe++){
+			
+	 	for (ye=0; ye < y; ye++){
+	 		
+	 	       //printf(" %c",minas[xe][ye]);
+			 	printf(" %c",eminas[xe][ye]);
+	 		 		
+	 	}
+	 		 printf("\n"); 
+			
+	 	
+	}
+		 printf("\n\n"); 
+		 
+		 for (xe=0; xe < x; xe++){
+			
+	 		for (ye=0; ye < y; ye++){
+	 		
+	 	       //printf(" %c",minas[xe][ye]);
+			 	printf(" %c",control[xe][ye]);
+	 		 		
+	 		}
+	 	printf("\n"); 
+			
+	 	
+		 }
+		 printf("\n contador cima: %d \n",contc);
+		 printf("\n contador baixo: %d \n",contb);
+		 printf("\n contador direita: %d \n",contd);
+		 printf("\n contador esquerda: %d \n",conte);
+	if (eminas[linha][coluna] == mina){
+		perdeu= true;
+			printf("\n\n Você Perdeu");
+	puts("\a");	
+	
+	}
+	
+	}
+	
+	
+	void pcima(int linha, int coluna){
+	contc++;
+	linha = linha -1;
+	
+	
+		
+	if (minas[linha][coluna] != mina){
+		
+		eminas[linha][coluna] = minas[linha][coluna];	
+		
+		
+	}
+	
+
+	
+	if (linha >= 0 && minas[linha][coluna] != vizinho && control[linha][coluna] != ver){
+					
+			control[linha][coluna] = ver;
+				
+		pcima(linha, coluna);
+	   	pdireita(linha, coluna);
+	    pesquerda(linha, coluna);
+		pbaixo(linha, coluna);	
+		
+	}
+
+	
+	
+	
+}
+
+	void pbaixo(int linha, int coluna){	
+	contb++;
+		linha = linha +1;
+	
+
+	if (minas[linha][coluna] != mina){
+		
+		eminas[linha][coluna] = minas[linha][coluna];	
+		
+		
+	}
+	
+	
+	if (linha < x && minas[linha][coluna] != vizinho && control[linha][coluna] != ver){
+			
+			 control[linha][coluna] = ver;	
+			 
+		pcima(linha, coluna);
+	   	pdireita(linha, coluna);
+	    pesquerda(linha, coluna);
+		pbaixo(linha, coluna);	
+		
+	}
+
+
+}
+
+	void pdireita(int linha, int coluna){	
+	contd++;
+		coluna = coluna +1;
+		
+	
+		if (minas[linha][coluna] != mina){
+		
+			eminas[linha][coluna] = minas[linha][coluna];	
+		
+		
+		}
+	  
+	
+		if (coluna <= y && minas[linha][coluna] != vizinho && control[linha][coluna] != ver){
+			
+		control[linha][coluna] = ver;
+		
+		pcima(linha, coluna);
+	   	pdireita(linha, coluna);
+	    pesquerda(linha, coluna);
+		pbaixo(linha, coluna);	
+		}
+		
+
+	
+
+}
+
+	void pesquerda(int linha, int coluna){	
+		conte++;
+		coluna = coluna -1;
+	
+
+		if (minas[linha][coluna] != mina){
+		
+		eminas[linha][coluna] = minas[linha][coluna];	
+		
+		
+		}
+	
+	
+	if (coluna >= 0 && minas[linha][coluna] != vizinho && control[linha][coluna] != ver){
+		
+			control[linha][coluna] = ver;
+			
+		pcima(linha, coluna);
+	   	pdireita(linha, coluna);
+	    pesquerda(linha, coluna);
+		pbaixo(linha, coluna);		
+		
+	}
+
+	
+}
+	
+	
+	
+
+main(){	
+	                     
+	    srand(time(NULL));
+	    
+		printf(" Campo Minado\n\n",setlocale(LC_ALL,"")); 		
+    	printf(" Quantas minas?\n");	
+			
+		scanf("%d",&qtdmina);
+			 
+		
+		 for (smina=0; smina < qtdmina; smina++){
+		 	// insere minas aleatorias no vetor
+		 	xa=(rand() % x); 
+			ya=(rand() % y); 
+			minas[xa][ya] = mina;			
+		 	
+		 }
+		
+		
+	 for (xm=0; xm < x; xm++){
+	 	for (ym=0; ym < y; ym++){
+	 	// primeira exibiçao	
+	 	eminas[xm][ym] = oculto;
+	 	printf(" %c",eminas[xm][ym]);
+	 		
+	 	if (minas[xm][ym] == mina) {
+	 		 if ( minas[xm-1][ym] != mina && (xm-1)>= 0)   minas[xm-1][ym] = vizinho;
+	 		 if ( minas[xm-1][ym-1] != mina && (xm-1)>=0 && (ym-1)>=0 ) minas[xm-1][ym-1] = vizinho;
+	 		 if ( minas[xm][ym-1] != mina && (ym-1)>=0) minas[xm][ym-1] = vizinho;
+	 		 if ( minas[xm+1][ym] != mina && (xm +1)< x) minas[xm+1][ym] = vizinho;
+	 		 if ( minas[xm+1][ym+1]  != mina && (xm +1)< x && (ym +1)< y) minas[xm+1][ym+1] = vizinho;
+	 		 if ( minas[xm][ym+1]   != mina && (ym +1)< y) minas[xm][ym+1] = vizinho;
+	 		 if ( minas[xm+1][ym-1] != mina && (xm +1)< x && (ym-1)>=0) minas[xm+1][ym-1] = vizinho;
+	 		 if ( minas[xm-1][ym+1] != mina && (xm-1)>=0 && (ym +1)< y ) minas[xm-1][ym+1] = vizinho;
+		 }	
+		 if (minas[xm][ym] != mina && minas[xm][ym] != vizinho) minas[xm][ym] = vazio;
+		 
+	 	}
+	 	printf("\n");
+		 }	
+	
+		 
+		 	
+	while (perdeu ==false){
+		
+		printf("\n Quais coodenadas?\n");	
+			
+		scanf("%d %d",&cx  , &cy);
+		cx= cx-1; cy= cy-1;
+	printf("\n\nTeste 200: %c ",minas[cx][cy]);
+	
+	if (minas[cx][cy] == vazio){
+	
+		pcima(cx, cy);
+		pbaixo(cx, cy);
+    	pdireita(cx, cy);
+	    pesquerda(cx, cy);
+		
+	}
+		
+			system("cls");
+		printf("\n\n Teste final");
+	exibe(cx, cy);	
+		
+	}	
+		
+		
+		
+	}
