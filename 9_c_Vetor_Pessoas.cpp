@@ -1,3 +1,12 @@
+/*
+9. Faça uma função que receba um vetor de 5 registros do tipo Pessoa e uma string,
+representando um nome, como parâmetro. Em seguida, a função deve buscar o
+nome da pessoa no vetor e retornar a sua idade. Se o nome da pessoa não existir
+na lista, exibir uma mensagem para o usuário dizendo que não foi encontrar
+nenhuma pessoa com este nome.
+*/
+
+
 #include <stdio.h>
 #include <string.h>
 
